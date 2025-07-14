@@ -18,7 +18,7 @@
 
 ### 1. 프로젝트 클론
 ```bash
-cd /teamD_docker
+cd /devops
 ```
 
 ### 2. Docker Compose 실행
@@ -82,10 +82,10 @@ npm run dev
 ## 종료
 
 ```bash
-docker-compose down
+docker compose down
 
 # 볼륨까지 삭제
-docker-compose down -v
+docker compose down -v
 ```
 
 ## 트러블슈팅
