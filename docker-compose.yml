@@ -1,0 +1,148 @@
+services:
+  # Node.js Express 애플리케이션
+  app:
+    build: ./app
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - app-network
+    volumes:
+      - ./logs:/app/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`localhost`)"
+      - "traefik.http.services.app.loadbalancer.server.port=3000"
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+    command: redis-server --appendonly yes
+
+  # Traefik (로드 밸런서/리버스 프록시)
+  traefik:
+    image: traefik:v3.0
+    ports:
+      - "80:80"
+      - "8080:8080" # Traefik 대시보드
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml
+    networks:
+      - app-network
+
+  # Elasticsearch
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - elk-network
+
+  # Logstash
+  logstash:
+    image: logstash:8.11.0
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logs:/app/logs:ro
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk-network
+      - app-network
+    depends_on:
+      - elasticsearch
+
+  # Kibana
+  kibana:
+    image: kibana:8.11.0
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    networks:
+      - elk-network
+    depends_on:
+      - elasticsearch
+
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+    networks:
+      - monitoring-network
+      - app-network
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - monitoring-network
+    depends_on:
+      - prometheus
+
+  # cAdvisor (컨테이너 모니터링)
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports:
+      - "8081:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
+    devices:
+      - /dev/kmsg
+    networks:
+      - monitoring-network
+
+volumes:
+  redis-data:
+  elasticsearch-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  app-network:
+    driver: bridge
+  elk-network:
+    driver: bridge
+  monitoring-network:
+    driver: bridge

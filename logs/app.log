@@ -1,0 +1,21 @@
+{"level":"info","message":"Server started on port 3000","nodeEnv":"production","port":3000,"timestamp":"2025-07-14T14:30:38.703Z"}
+{"duration":0.023,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:30:40.998Z","url":"/health","userAgent":"Wget"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully","timestamp":"2025-07-14T14:30:43.761Z"}
+{"level":"info","message":"Server started on port 3000","nodeEnv":"production","port":3000,"timestamp":"2025-07-14T14:31:17.622Z"}
+{"duration":0.027,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:21.015Z","url":"/health","userAgent":"Wget"}
+{"duration":0.052,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:28.310Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.029,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:43.281Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.009,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:51.140Z","url":"/health","userAgent":"Wget"}
+{"duration":0.069,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:57.090Z","url":"/","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0"}
+{"ip":"::ffff:192.168.65.1","level":"warn","message":"404 - Route not found","method":"GET","timestamp":"2025-07-14T14:31:57.341Z","url":"/favicon.ico"}
+{"duration":0.02,"level":"info","message":"HTTP Request","method":"GET","status":404,"timestamp":"2025-07-14T14:31:57.358Z","url":"/favicon.ico","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0"}
+{"duration":0.053,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:31:58.268Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.042,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:13.409Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.036,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:21.487Z","url":"/health","userAgent":"Wget"}
+{"duration":0.069,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:28.291Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.015,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:43.301Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.006,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:51.576Z","url":"/health","userAgent":"Wget"}
+{"duration":0.017,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:32:58.244Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.027,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:33:13.233Z","url":"/metrics","userAgent":"Prometheus/2.53.5"}
+{"duration":0.005,"level":"info","message":"HTTP Request","method":"GET","status":200,"timestamp":"2025-07-14T14:33:21.644Z","url":"/health","userAgent":"Wget"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully","timestamp":"2025-07-14T14:33:22.274Z"}
