@@ -1,4 +1,6 @@
 # TeamD Docker Monitoring Stack
+<img width="676" height="366" alt="Screenshot 2025-07-14 at 23 40 49" src="https://github.com/user-attachments/assets/181a9085-9c0c-4b4c-9483-05f288de4923" />
+
 
 이 프로젝트는 Node.js Express 애플리케이션과 함께 완전한 모니터링 스택을 Docker로 구성합니다.
 
@@ -9,7 +11,7 @@
 - **Traefik**: 로드 밸런서 및 리버스 프록시
 - **Elasticsearch**: 로그 저장소
 - **Logstash**: 로그 처리 파이프라인
-- **Kibana**: 로그 시각화 대시보드
+- **Kibana**: 로그 시각화 대시보드  
 - **Prometheus**: 메트릭 수집
 - **Grafana**: 메트릭 시각화 대시보드
 - **cAdvisor**: 컨테이너 모니터링
